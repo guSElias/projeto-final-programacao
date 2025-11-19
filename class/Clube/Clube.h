@@ -2,10 +2,10 @@
 #define CLUBE_H
 #include <string>
 #include <vector>
-#include <Atleta.h>
-#include <Campeonato.h>
 
 using namespace std;
+class Atleta;
+class Campeonato;
 
 class Clube
 {

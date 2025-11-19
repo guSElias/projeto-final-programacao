@@ -1,4 +1,4 @@
-#include <Clube.h>
+#include "../Clube/Clube.h"
 #include <iostream>
 #include <algorithm>
 
