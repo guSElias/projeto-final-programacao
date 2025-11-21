@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Clube.h"
 #include <vector>
 
-#include "Atleta.h"
+#include "./class/Clube/Clube.h"
+#include "./class/Atleta/Atleta.h"
 
 using namespace std;
 void testarClube()

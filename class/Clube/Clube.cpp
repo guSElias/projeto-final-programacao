@@ -1,6 +1,8 @@
-#include "../Clube/Clube.h"
+#include "Clube.h"
 #include <iostream>
 #include <algorithm>
+
+#include "../Atleta/Atleta.h"
 
 using namespace std;
 
@@ -8,6 +10,7 @@ Clube::Clube()
 {
   this->nome = "Indefinido";
   this->anoFundacao = 0;
+  this->elenco = {};
 }
 Clube::Clube(string n, int af)
 {
@@ -15,17 +18,18 @@ Clube::Clube(string n, int af)
   this->anoFundacao = af;
 }
 
-void Clube::venderAtleta(Atleta &atleta)
-{
+void Clube::venderAtleta(Atleta& atleta) {
   elenco.erase(
-      remove(elenco.begin(), elenco.end(), atleta),
-      elenco.end());
+      remove(elenco.begin(), elenco.end(), &atleta),
+      elenco.end()
+  );
 }
 
-void Clube::comprarAtleta(Atleta &atleta)
-{
-  elenco.push_back(atleta);
+
+void Clube::comprarAtleta(Atleta& atleta) {
+  elenco.push_back(&atleta);
 }
+
 
 void Clube::exibirElenco()
 {
@@ -39,25 +43,24 @@ void Clube::exibirElenco()
 
   for (auto &atleta : elenco)
   {
-    cout << "- " << atleta.getNome() << "\n";
+    cout << "- " << atleta->getNome() << "\n";
   }
 }
-
-void Clube::exibirTitulos()
-{
-  cout << "\n--- Titulos do Clube ---\n";
-
-  if (titulos.empty())
-  {
-    cout << "Nenhum titulo cadastrado.\n";
-    return;
-  }
-  // falta finalizar classe campeonato
-  //  for (auto &titulo : titulos)
-  //  {
-  //    cout << "- " << titulo << "\n";
-  //  }
-}
+// falta finalizar classe campeonato
+// void Clube::exibirTitulos()
+// {
+//   cout << "\n--- Titulos do Clube ---\n";
+//
+//   if (titulos.empty())
+//   {
+//     cout << "Nenhum titulo cadastrado.\n";
+//     return;
+//   }
+//    for (auto &titulo : titulos)
+//    {
+//      cout << "- " << titulo << "\n";
+//    }
+// }
 
 string Clube::getNome()
 {

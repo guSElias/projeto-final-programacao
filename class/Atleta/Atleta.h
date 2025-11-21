@@ -2,6 +2,7 @@
 #define ATLETA_H
 #include <string>
 #include <vector>
+#include "Atleta.h"
 
 using namespace std;
 class Clube;
@@ -18,7 +19,8 @@ private:
 public:
   Atleta();
   Atleta(string nome, int idade, vector<string> posicoes);
-  void transferencia(Clube* &novoClube);
+
+  void transferencia(Clube*& novoClube);
   void exibir();
   string getNome();
 };

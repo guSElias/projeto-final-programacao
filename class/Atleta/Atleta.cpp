@@ -1,10 +1,13 @@
-#include <Atleta.h>
+#include "Atleta.h"
 #include <iostream>
+#include "../Clube/Clube.h"
+
+using namespace std;
 
 Atleta::Atleta()
 {
-  this->nome = "";
-  this->idade = 18;
+  this->nome = "Não identificado";
+  this->idade = 0;
   this->posicoes = {};
 }
 Atleta::Atleta(string n, int i, vector<string> p)
@@ -14,10 +17,10 @@ Atleta::Atleta(string n, int i, vector<string> p)
   this->posicoes = p;
 }
 // remove do clube atual, adiciona ao novo e altera o clube atual
-void Atleta::transferencia(Clube &novoClube)
+void Atleta::transferencia(Clube* &novoClube)
 {
-  clubeAtual.venderAtleta(*this);
-  novoClube.comprarAtleta(*this);
+  clubeAtual->venderAtleta(*this);
+  novoClube->comprarAtleta(*this);
   clubes.push_back(novoClube);
   clubeAtual = novoClube;
 };
@@ -36,7 +39,7 @@ void Atleta::exibir()
   }
   cout << "\n";
 
-  cout << "Clube atual: " << this->clubeAtual.getNome() << "\n";
+  cout << "Clube atual: " << this->clubeAtual->getNome() << "\n";
 
   // Histórico de clubes
   cout << "Clubes anteriores: ";
@@ -48,7 +51,7 @@ void Atleta::exibir()
   {
     for (auto &c : this->clubes)
     {
-      cout << c.getNome() << " ";
+      cout << c->getNome() << " ";
     }
   }
   cout << "\n\n";
