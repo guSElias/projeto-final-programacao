@@ -10,19 +10,19 @@ class Clube;
 class Atleta
 {
 private:
-  string nome;
-  int idade;
-  vector<string> posicoes;
-  Clube* clubeAtual;
-  vector<Clube*> clubes;
+    string nome;
+    int idade;
+    vector<string> posicoes;
+    Clube* clubeAtual;
+    vector<Clube*> clubes;
 
 public:
-  Atleta();
-  Atleta(string nome, int idade, vector<string> posicoes);
+    Atleta();
+    Atleta(string nome, int idade, vector<string> posicoes);
 
-  void transferencia(Clube*& novoClube);
-  void exibir();
-  string getNome();
+    void transferencia(Clube*& novoClube);
+    void exibir();
+    string getNome();
 };
 
 #endif
