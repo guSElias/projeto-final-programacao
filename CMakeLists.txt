@@ -15,4 +15,12 @@ add_executable(projeto_final_programacao
         class/Clube/Clube.cpp
         class/Clube/Clube.h
         class/Partida/Partida.h
-        main.cpp)
+        main.cpp
+        class/Campeonato/Campeonato.cpp
+        class/Campeonato/Campeonato.h
+        class/Campeonato/Campeonato.h
+        class/Partida/Partida.cpp
+        class/Partida/Partida.h
+        CriarDados/criarDados.cpp
+        CriarDados/criarDados.h
+)
