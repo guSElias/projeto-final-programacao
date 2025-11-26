@@ -15,7 +15,7 @@ private:
 public:
     Campeonato();
     Campeonato(string nome, vector<Clube*> clubesParticipantes = {});
-    Clube* setCampeao();
+    void setCampeao(Clube* c);
     string getNome();
 };
 

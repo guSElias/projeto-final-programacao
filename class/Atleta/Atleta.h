@@ -15,13 +15,15 @@ private:
     vector<string> posicoes;
     Clube* clubeAtual;
     vector<Clube*> clubes;
-
+    int gols = 0;
+    int assistencias = 0;
 public:
     Atleta();
     Atleta(string nome, int idade, vector<string> posicoes);
-
     void transferencia(Clube*& novoClube);
     void exibir();
+    void registarGol();
+    void registarAssistencia();
     string getNome();
 };
 

@@ -1,5 +1,9 @@
 #include "Campeonato.h"
 
+#include <iostream>
+
+#include "Clube.h"
+
 using namespace std;
 
 Campeonato::Campeonato()
@@ -19,7 +23,9 @@ string Campeonato::getNome()
     return this->nome;
 }
 
-Clube* Campeonato::setCampeao(Clube* c)
+void Campeonato::setCampeao(Clube* c)
 {
     this->campeao = c;
+    string campeao = c->getNome();
+    cout << "Campeao: " << campeao << endl;
 }

@@ -56,7 +56,14 @@ void Atleta::exibir()
   }
   cout << "\n\n";
 };
-
+void Atleta::registarGol()
+{
+  this->gols += 1;
+}
+void Atleta::registarAssistencia()
+{
+  this->assistencias += 1;
+}
 string Atleta::getNome()
 {
   return this->nome;
