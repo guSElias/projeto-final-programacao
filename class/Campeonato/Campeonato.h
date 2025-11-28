@@ -12,11 +12,15 @@ private:
     string nome;
     vector<Clube*> clubesParticipantes;
     Clube* campeao = nullptr;
+
 public:
     Campeonato();
-    Campeonato(string nome, vector<Clube*> clubesParticipantes = {});
+    Campeonato(string nome);
     void setCampeao(Clube* c);
+    void inserirUmClube(Clube* c);
     string getNome();
+    void exibirClubes();
+    void inserirTodosTimes(vector<Clube*> c);
 };
 
 

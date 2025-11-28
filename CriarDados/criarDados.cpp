@@ -5,6 +5,7 @@
 #include <utility>
 #include <vector>
 
+#include "../class/Campeonato/Campeonato.h"
 #include "../class/Atleta/Atleta.h"
 #include "../class/Clube/Clube.h"
 using namespace std;
@@ -260,4 +261,11 @@ vector<Clube*> criarInstanciasClubesTitularesTodos()
         }
     }
     return clubesCriados;
+};
+
+Campeonato criarCampeonato()
+{
+    Campeonato superMundial = Campeonato("Copa do Mundo de Clubes FIFA");
+    superMundial.inserirTodosTimes(criarInstanciasClubesTitularesTodos());
+    return superMundial;
 };

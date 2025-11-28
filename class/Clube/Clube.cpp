@@ -33,7 +33,7 @@ void Clube::comprarAtleta(Atleta& atleta) {
 
 void Clube::exibirElenco()
 {
-  cout << "\n--- Elenco do Clube ---\n";
+  cout << "\n--- Elenco do " << this->nome << " ---\n";
 
   if (elenco.empty())
   {
