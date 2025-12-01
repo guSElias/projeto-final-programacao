@@ -243,7 +243,6 @@ vector<Clube*> criarInstanciasClubesTitularesTodos()
 
         // 1. Cria a instância do Clube
         Clube* novoClube = new Clube(nomeClube, anoFundacao);
-        cout << novoClube->getNome() << endl;
         clubes[nomeClube] = novoClube;
         clubesCriados.push_back(novoClube);
 

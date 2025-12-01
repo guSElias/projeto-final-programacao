@@ -18,9 +18,11 @@ public:
     Campeonato(string nome);
     void setCampeao(Clube* c);
     void inserirUmClube(Clube* c);
+    vector<Clube*> getClubes();
     string getNome();
     void exibirClubes();
     void inserirTodosTimes(vector<Clube*> c);
+    string getCampeao();
 };
 
 

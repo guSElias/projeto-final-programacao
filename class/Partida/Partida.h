@@ -4,18 +4,17 @@
 #include <string>
 #include <vector>
 
-#include "Clube.h"
+#include "../Clube/Clube.h"
 
 using namespace std;
 
 class Campeonato;
 class Atleta;
 
-// Estrutura que representa um gol da partida
 struct Gol
 {
     int minuto;
-    string timeGol;
+    Clube* timeGol;
     Atleta* jogadorAutor;
     Atleta* jogadorAssistencia;
 };
@@ -24,16 +23,17 @@ class Partida
 {
 private:
     Campeonato* campeonato;
-    string timeCasa;
-    string timeFora;
+    Clube* timeCasa;
+    Clube* timeFora;
     vector<Gol> gols = {};
 
 public:
     Partida();
-    Partida(Campeonato* c, string timeCasa, string timeFora);
-    bool validarTimeGol(string timeGol);
-    void registrarGol(int minuto, string timeGol, Atleta* autor, Atleta* assistencia);
+    Partida(Campeonato* c, Clube* timeCasa, Clube* timeFora);
+    bool validarTimeGol(Clube* timeGol);
+    void registrarGol(int minuto, Clube* timeGol, Atleta* autor, Atleta* assistencia);
     void placarFinal();
+    void registrarPartida(Clube* clube);
 };
 
 #endif

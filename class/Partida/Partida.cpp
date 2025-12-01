@@ -1,7 +1,7 @@
 #include "Partida.h"
 #include <iostream>
 
-#include "Atleta.h"
+#include "../Atleta/Atleta.h"
 using namespace std;
 
 int golsTimeCasa;
@@ -10,23 +10,25 @@ int golsTimeFora;
 Partida::Partida()
 {
     this->campeonato = nullptr;
-    this->timeCasa = "time casa";
-    this->timeFora = "time visitante";
+    this->timeCasa = nullptr;
+    this->timeFora = nullptr;
 }
 
-Partida::Partida(Campeonato* c, string timeCasa, string timeFora)
+Partida::Partida(Campeonato* c, Clube* timeCasa, Clube* timeFora)
 {
     this->campeonato = c;
     this->timeCasa = timeCasa;
     this->timeFora = timeFora;
+    registrarPartida(timeCasa);
+    registrarPartida(timeFora);
 }
 
-bool Partida::validarTimeGol(string timeGol)
+bool Partida::validarTimeGol(Clube* timeGol)
 {
     return timeGol == this->timeCasa || timeGol == this->timeFora;
 }
 
-void Partida::registrarGol(int minuto, string timeGol, Atleta* autor, Atleta* assistencia = nullptr)
+void Partida::registrarGol(int minuto, Clube* timeGol, Atleta* autor, Atleta* assistencia = nullptr)
 {
     if (this->validarTimeGol(timeGol))
     {
@@ -61,4 +63,13 @@ void Partida::placarFinal()
         << " x "
         << golsTimeFora << " " << timeFora
         << endl;
+}
+
+void Partida::registrarPartida(Clube* c)
+{
+    vector<Atleta*> elenco = c->getElenco();
+    for (int i = 0; i < elenco.size(); i++)
+    {
+        elenco[i]->registarJogosDisputados();
+    }
 }

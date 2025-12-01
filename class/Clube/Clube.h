@@ -2,7 +2,8 @@
 #define CLUBE_H
 #include <string>
 #include <vector>
-// #include "Campeonato.h"
+
+class Campeonato;
 class Atleta;
 using namespace std;
 
@@ -12,7 +13,7 @@ private:
     string nome;
     int anoFundacao;
     vector<Atleta*> elenco;
-    // vector<Campeonato> titulos;
+    vector<Campeonato*> titulos;
 
 public:
     Clube();
@@ -22,6 +23,7 @@ public:
     void exibirElenco();
     void exibirTitulos();
     string getNome();
+    vector<Atleta*> getElenco();
 };
 
 #endif

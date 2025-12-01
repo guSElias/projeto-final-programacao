@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "Clube.h"
+#include "../Clube/Clube.h"
 
 using namespace std;
 
@@ -46,4 +46,14 @@ void Campeonato::setCampeao(Clube* c)
 void Campeonato::inserirUmClube(Clube* c)
 {
     this->clubesParticipantes.push_back(c);
+}
+
+vector<Clube*> Campeonato::getClubes()
+{
+    return this->clubesParticipantes;
+}
+
+string Campeonato::getCampeao()
+{
+    return this->campeao->getNome();
 }

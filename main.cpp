@@ -1,56 +1,154 @@
 #include <iostream>
 #include <string>
+#include <limits>
 
+#include "class/Atleta/Atleta.h"
 #include "CriarDados/criarDados.h"
 
 using namespace std;
 
 Campeonato superMundial = criarCampeonato();
+vector<Clube*> clubes = superMundial.getClubes();
 
-void menu()
+Clube* buscarClube(string nome)
+{
+    for (int i = 0; i < clubes.size(); i++)
+    {
+        if (clubes[i]->getNome() == nome)
+        {
+            return clubes[i];
+        }
+    }
+    return nullptr;
+}
+
+Atleta* buscarAtleta(string nome)
+{
+    for (int i = 0; i < clubes.size(); i++)
+    {
+        vector<Atleta*> atletas = clubes[i]->getElenco();
+        for (int j = 0; j < atletas.size(); j++)
+        {
+            if (atletas[j]->getNome() == nome)
+            {
+                return atletas[j];
+            }
+        }
+    }
+    return nullptr;
+}
+
+
+void menu(int opcao)
+{
+    switch (opcao)
+    {
+    case 1:
+        {
+            string nome;
+            int anoFundacao;
+
+            cout << "====Cadastro de Clube====\n";
+
+            // limpar buffer antes de getline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Digite o nome do Clube: ";
+            getline(cin, nome); // <-- AGORA ACEITA "Vinicius Junior FC"
+
+            cout << "Digite o ano de fundação: ";
+            cin >> anoFundacao;
+
+            Clube novoClube(nome, anoFundacao);
+            cout << "Novo clube criado: " << novoClube.getNome() << endl;
+            // falta inserir clube ao vetor de clubes
+
+            break;
+        }
+
+    case 2:
+        // Cadastrar jogador
+        break;
+
+    case 3:
+        {
+            string nome;
+            cout << "====Exibir Clube====\n";
+
+            // limpar buffer antes do getline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Digite o nome do Clube: ";
+            getline(cin, nome);
+
+            Clube* c = buscarClube(nome);
+            cout << "Clube encontrado: " << c->getNome() << endl;
+            if (c != nullptr)
+            {
+                c->getElenco();
+                // c->exibirTitulos();
+            }
+            else
+            {
+                cout << "Clube não encontrado!" << endl;
+            }
+            break;
+        }
+
+    case 4:
+        {
+            string nome;
+            cout << "====Exibir jogador====\n";
+
+            // limpar buffer antes do getline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Digite o nome do jogador: ";
+            getline(cin, nome);
+
+            Atleta* a = buscarAtleta(nome);
+            if (a != nullptr)
+                a->exibir();
+            else
+                cout << "Atleta não encontrado!" << endl;
+
+            break;
+        }
+
+    case 5:
+        cout << "====Exibir Campeonato===\n";
+        superMundial.exibirClubes();
+        cout << "\nCampeão: " << superMundial.getCampeao() << endl;
+        break;
+
+    case 0:
+        cout << "Saindo...\n";
+        break;
+
+    default:
+        cout << "Opcao inválida! Tente novamente.\n";
+    }
+}
+
+int main()
 {
     int opcao;
 
     do
     {
         cout << "\n===== MENU PRINCIPAL =====\n";
-        cout << "1. Cadastrar item\n";
-        cout << "2. Listar itens\n";
-        cout << "3. Pesquisar item\n";
+        cout << "1. Cadastrar clube\n";
+        cout << "2. Cadastrar jogador\n";
+        cout << "3. Exibir clube\n";
+        cout << "4. Exibir jogador\n";
+        cout << "5. Exibir campeonato\n";
         cout << "0. Sair\n";
         cout << "Escolha uma opcao: ";
         cin >> opcao;
 
-        switch (opcao)
-        {
-        case 1:
-            cout << "Você escolheu CADASTRAR.\n";
-            // código da opção 1
-            break;
-
-        case 2:
-            cout << "Você escolheu LISTAR.\n";
-            // código da opção 2
-            break;
-
-        case 3:
-            cout << "Você escolheu PESQUISAR.\n";
-            // código da opção 3
-            break;
-
-        case 4:
-            cout << "Saindo...\n";
-            break;
-
-        default:
-            cout << "Opcao inválida! Tente novamente.\n";
-        }
+        menu(opcao);
     }
     while (opcao > 0);
-}
 
-int main()
-{
-    menu();
     return 0;
 }

@@ -17,6 +17,7 @@ private:
     vector<Clube*> clubes;
     int gols = 0;
     int assistencias = 0;
+    int jogosDisputados = 0;
 public:
     Atleta();
     Atleta(string nome, int idade, vector<string> posicoes);
@@ -24,6 +25,7 @@ public:
     void exibir();
     void registarGol();
     void registarAssistencia();
+    void registarJogosDisputados();
     string getNome();
 };
 
