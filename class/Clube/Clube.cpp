@@ -47,9 +47,9 @@ void Clube::exibirElenco()
         return;
     }
 
-    for (auto& atleta : elenco)
+    for (int i = 0; i < elenco.size(); i++)
     {
-        cout << "- " << atleta->getNome() << "\n";
+        cout << "- " << elenco[i]->getNome() << ": " << elenco[i]->getPosicao() << "\n";
     }
 }
 

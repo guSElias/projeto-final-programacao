@@ -28,6 +28,7 @@ public:
     void registarAssistencia();
     void registarJogosDisputados();
     string getNome();
+    string getPosicao();
 };
 
 #endif

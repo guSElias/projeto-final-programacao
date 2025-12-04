@@ -80,6 +80,10 @@ string Atleta::getNome()
     return this->nome;
 }
 
+string Atleta::getPosicao()
+{
+    return this->posicoes[0];
+}
 void Atleta::registarJogosDisputados()
 {
     this->jogosDisputados += 1;

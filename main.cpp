@@ -133,7 +133,7 @@ void menu(int opcao)
     case 3:
         {
             string nome;
-            cout << "====Exibir títulos do Clube====\n";
+            cout << "====Exibir Clube====\n";
 
             // limpar buffer antes do getline
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -146,6 +146,7 @@ void menu(int opcao)
             {
                 cout << "Exibindo o clube: " << c->getNome() << endl;
                 c->exibirTitulos();
+                c->exibirElenco();
             }
             else
             {
@@ -175,9 +176,9 @@ void menu(int opcao)
         }
 
     case 5:
-        cout << "====Exibir Campeonato===\n";
+        cout << superMundial.getNome() << "\n";
+        cout << "\nCampeão: " << superMundial.getCampeao() << "\n" << endl;
         superMundial.exibirClubes();
-        cout << "\nCampeão: " << superMundial.getCampeao() << endl;
         break;
 
     case 0:
@@ -203,7 +204,7 @@ int main()
         cout << "4. Exibir jogador\n";
         cout << "5. Exibir campeonato\n";
         cout << "0. Sair\n";
-        cout << "Escolha uma opcao: ";
+        cout << "Escolha uma opcao: " << endl;
         cin >> opcao;
 
         menu(opcao);
