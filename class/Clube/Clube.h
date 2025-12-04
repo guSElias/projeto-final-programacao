@@ -18,9 +18,10 @@ private:
 public:
     Clube();
     Clube(string nome, int anoFundacao);
-    void venderAtleta(Atleta& atleta);
-    void comprarAtleta(Atleta& atleta);
+    void venderAtleta(Atleta* atleta);
+    void comprarAtleta(Atleta* atleta);
     void exibirElenco();
+    void adicionarTitulo(Campeonato* titulo);
     void exibirTitulos();
     string getNome();
     vector<Atleta*> getElenco();

@@ -27,7 +27,7 @@ void Campeonato::exibirClubes()
     cout << "Clubes participando do campeonato:" << endl;
     for (int i = 0; i < this->clubesParticipantes.size(); i++)
     {
-        cout << this->clubesParticipantes[i] << endl;
+        cout << this->clubesParticipantes[i]->getNome() << endl;
     }
 }
 
@@ -39,8 +39,7 @@ void Campeonato::inserirTodosTimes(vector<Clube*> c)
 void Campeonato::setCampeao(Clube* c)
 {
     this->campeao = c;
-    string campeao = c->getNome();
-    cout << "Campeao: " << campeao << endl;
+    c->adicionarTitulo(this);
 }
 
 void Campeonato::inserirUmClube(Clube* c)

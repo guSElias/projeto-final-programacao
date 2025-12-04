@@ -19,13 +19,18 @@ Atleta::Atleta(string n, int i, vector<string> p)
 }
 
 // remove do clube atual, adiciona ao novo e altera o clube atual
-void Atleta::transferencia(Clube* & novoClube)
+void Atleta::transferencia(Clube* novoClube)
 {
-    clubeAtual->venderAtleta(*this);
-    novoClube->comprarAtleta(*this);
+    clubeAtual->venderAtleta(this);
+    novoClube->comprarAtleta(this);
     clubes.push_back(novoClube);
     clubeAtual = novoClube;
 };
+
+void Atleta::setClube(Clube* novoClube)
+{
+    clubeAtual = novoClube;
+}
 
 void Atleta::exibir()
 {

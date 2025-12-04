@@ -21,7 +21,8 @@ private:
 public:
     Atleta();
     Atleta(string nome, int idade, vector<string> posicoes);
-    void transferencia(Clube*& novoClube);
+    void transferencia(Clube* novoClube);
+    void setClube(Clube* novoClube);
     void exibir();
     void registarGol();
     void registarAssistencia();

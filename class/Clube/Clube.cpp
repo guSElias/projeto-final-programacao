@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
+#include "../Campeonato/Campeonato.h"
 #include "../Atleta/Atleta.h"
 
 using namespace std;
@@ -20,18 +21,19 @@ Clube::Clube(string n, int af)
     this->anoFundacao = af;
 }
 
-void Clube::venderAtleta(Atleta& atleta)
+void Clube::venderAtleta(Atleta* atleta)
 {
     elenco.erase(
-        remove(elenco.begin(), elenco.end(), &atleta),
+        remove(elenco.begin(), elenco.end(), atleta),
         elenco.end()
     );
 }
 
 
-void Clube::comprarAtleta(Atleta& atleta)
+void Clube::comprarAtleta(Atleta* atleta)
 {
-    elenco.push_back(&atleta);
+    elenco.push_back(atleta);
+    atleta->setClube(this);
 }
 
 
@@ -51,6 +53,11 @@ void Clube::exibirElenco()
     }
 }
 
+void Clube::adicionarTitulo(Campeonato* t)
+{
+    this->titulos.push_back(t);
+}
+
 void Clube::exibirTitulos()
 {
     cout << "\n--- Titulos do Clube ---\n";
@@ -62,7 +69,7 @@ void Clube::exibirTitulos()
     }
     for (auto& titulo : titulos)
     {
-        cout << "- " << titulo << "\n";
+        cout << "- " << titulo->getNome() << "\n";
     }
 }
 

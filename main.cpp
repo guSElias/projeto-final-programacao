@@ -22,6 +22,12 @@ Clube* buscarClube(string nome)
     return nullptr;
 }
 
+void adicionarCampeao()
+{
+    Clube* chelsea = buscarClube("Chelsea");
+    superMundial.setCampeao(chelsea);
+}
+
 Atleta* buscarAtleta(string nome)
 {
     for (int i = 0; i < clubes.size(); i++)
@@ -50,43 +56,96 @@ void menu(int opcao)
 
             cout << "====Cadastro de Clube====\n";
 
-            // limpar buffer antes de getline
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-            cout << "Digite o nome do Clube: ";
-            getline(cin, nome); // <-- AGORA ACEITA "Vinicius Junior FC"
-
-            cout << "Digite o ano de fundação: ";
-            cin >> anoFundacao;
-
-            Clube novoClube(nome, anoFundacao);
-            cout << "Novo clube criado: " << novoClube.getNome() << endl;
-            // falta inserir clube ao vetor de clubes
-
-            break;
-        }
-
-    case 2:
-        // Cadastrar jogador
-        break;
-
-    case 3:
-        {
-            string nome;
-            cout << "====Exibir Clube====\n";
-
-            // limpar buffer antes do getline
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             cout << "Digite o nome do Clube: ";
             getline(cin, nome);
 
+            cout << "Digite o ano de fundação: ";
+            cin >> anoFundacao;
+
+            Clube* novoClube = new Clube(nome, anoFundacao);
+            cout << "Novo clube criado: " << novoClube->getNome() << endl;
+            clubes.push_back(novoClube);
+            break;
+        }
+
+    case 2:
+        {
+            string nome;
+            int idade;
+            string posicao;
+            vector<string> posicoes;
+            int opcao;
+
+            cout << "====Cadastro de Atleta====\n";
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Digite o nome do Atleta: ";
+            getline(cin, nome);
+
+            cout << "Digite a idade do atleta: ";
+            cin >> idade;
+
+            // Limpar o buffer após ler um int e antes de ler string (getline)
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            do
+            {
+                cout << "Digite a posicao do atleta: ";
+                getline(cin, posicao);
+                posicoes.push_back(posicao);
+
+                cout << "Deseja inserir uma outra posição(1- Sim/ 2- Não): ";
+                // Ler a opção do usuário
+                cin >> opcao;
+
+                // Limpar o buffer novamente para o próximo loop do getline funcionar
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            while (opcao == 1);
+
+            Atleta* novoAtleta = new Atleta(nome, idade, posicoes);
+            cout << "Novo atleta criado: " << novoAtleta->getNome() << endl;
+
+            cout << "Deseja inserir o atleta à um clube?(1- Sim/ 2- Não)" << endl;
+            cin >> opcao;
+            if (opcao == 1)
+            {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Digite o nome do Clube: " << endl;
+                getline(cin, nome);
+
+                Clube* c = buscarClube(nome);
+                if (c != nullptr)
+                {
+                    c->comprarAtleta(novoAtleta);
+                }
+                else
+                {
+                    cout << "Clube não encontrado!" << endl;
+                }
+            }
+        }
+        break;
+
+    case 3:
+        {
+            string nome;
+            cout << "====Exibir títulos do Clube====\n";
+
+            // limpar buffer antes do getline
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Digite o nome do Clube: " << endl;
+            getline(cin, nome);
+
             Clube* c = buscarClube(nome);
-            cout << "Clube encontrado: " << c->getNome() << endl;
             if (c != nullptr)
             {
-                c->getElenco();
-                // c->exibirTitulos();
+                cout << "Exibindo o clube: " << c->getNome() << endl;
+                c->exibirTitulos();
             }
             else
             {
@@ -132,6 +191,7 @@ void menu(int opcao)
 
 int main()
 {
+    adicionarCampeao();
     int opcao;
 
     do

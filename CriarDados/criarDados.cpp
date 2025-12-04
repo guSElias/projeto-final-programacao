@@ -255,12 +255,13 @@ vector<Clube*> criarInstanciasClubesTitularesTodos()
                 Atleta* novoAtleta = new Atleta(dadosAtleta.nome, dadosAtleta.idade, dadosAtleta.posicoes);
 
                 // 4. Associa o Atleta ao Clube
-                novoClube->comprarAtleta(*novoAtleta);
+                novoClube->comprarAtleta(novoAtleta);
             }
         }
     }
     return clubesCriados;
 };
+
 
 Campeonato criarCampeonato()
 {
