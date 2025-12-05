@@ -176,6 +176,31 @@ void menu(int opcao)
         }
 
     case 5:
+        {
+            string nome;
+            string novoClube;
+            cout << "====Transferência de Jogador====\n";
+            cout << "Digite o nome do jogador: ";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, nome);
+
+            Atleta* a = buscarAtleta(nome);
+            if (a != nullptr)
+            {
+                cout << "Digite o novo clube do jogador: " << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                getline(cin, novoClube);
+                Clube* c = buscarClube(novoClube);
+                a->transferencia(buscarClube(c->getNome()));
+            }
+            else
+            {
+                cout << "Atleta não encontrado!" << endl;
+            }
+            break;
+        }
+
+    case 6:
         cout << superMundial.getNome() << "\n";
         cout << "\nCampeão: " << superMundial.getCampeao() << "\n" << endl;
         superMundial.exibirClubes();
@@ -202,7 +227,8 @@ int main()
         cout << "2. Cadastrar jogador\n";
         cout << "3. Exibir clube\n";
         cout << "4. Exibir jogador\n";
-        cout << "5. Exibir campeonato\n";
+        cout << "5. Transferência de jogador\n";
+        cout << "6. Exibir campeonato\n";
         cout << "0. Sair\n";
         cout << "Escolha uma opcao: " << endl;
         cin >> opcao;

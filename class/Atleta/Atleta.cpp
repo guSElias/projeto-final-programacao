@@ -41,9 +41,9 @@ void Atleta::exibir()
 
     // Exibir posições
     cout << "Posições: ";
-    for (auto& p : this->posicoes)
+    for (int i = 0; i < this->posicoes.size(); i++)
     {
-        cout << p << " ";
+        cout << posicoes[i] << " ";
     }
     cout << "\n";
 
@@ -84,6 +84,7 @@ string Atleta::getPosicao()
 {
     return this->posicoes[0];
 }
+
 void Atleta::registarJogosDisputados()
 {
     this->jogosDisputados += 1;
